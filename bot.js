@@ -110,7 +110,7 @@ bot.command('cancel', (ctx) => {
 // const bot = new Telegraf(process.env.BOT_TOKEN);
 const bot = new Composer();
 bot.use(session());
-bot.use(stage.middleware());
+bot.use(stage);
 
 bot.start((ctx) => {
   const firstName = ctx.update.message.from.first_name;
