@@ -100,7 +100,7 @@ passwordScene.on('text', async (ctx) => {
 
 const stage = new Stage();
 
-stage.register([encryptScene, decryptScene, coverScene, passwordScene]);
+stage.register(encryptScene, decryptScene, coverScene, passwordScene);
 
 bot.command('cancel', (ctx) => {
   ctx.reply('Bye!');
