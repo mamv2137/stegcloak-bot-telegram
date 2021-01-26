@@ -4,6 +4,9 @@ const {
   Scenes: { BaseScene, Stage },
   Telegraf,
 } = require('telegraf');
+const dotenv = require('dotenv');
+dotenv.config();
+
 const StegCloak = require('stegcloak');
 
 const stegcloak = new StegCloak(true, false);
