@@ -98,14 +98,11 @@ passwordScene.on('text', async (ctx) => {
   }
 });
 
-const stage = new Stage([
-  encryptScene,
-  decryptScene,
-  coverScene,
-  passwordScene,
-]);
+const stage = new Stage();
 
-stage.command('cancel', (ctx) => {
+stage.register([encryptScene, decryptScene, coverScene, passwordScene]);
+
+bot.command('cancel', (ctx) => {
   ctx.reply('Bye!');
   ctx.scene.leave();
 });
