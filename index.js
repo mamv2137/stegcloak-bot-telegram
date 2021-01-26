@@ -143,6 +143,6 @@ bot.command('options', (ctx) => {
   );
 });
 
-// bot.launch();
+bot.launch();
 
-module.export = bot;
+// module.export = bot;
