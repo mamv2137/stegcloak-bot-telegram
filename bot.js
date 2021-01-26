@@ -102,11 +102,6 @@ const stage = new Stage();
 
 stage.register(encryptScene, decryptScene, coverScene, passwordScene);
 
-bot.command('cancel', (ctx) => {
-  ctx.reply('Bye!');
-  ctx.scene.leave();
-});
-
 // const bot = new Telegraf(process.env.BOT_TOKEN);
 const bot = new Composer();
 bot.use(session());
@@ -134,6 +129,11 @@ bot.command('options', (ctx) => {
     'Select an options',
     Markup.keyboard([`🔒 ${ENCRIPT}`, `🔓 ${DECRIPT}`]).oneTime()
   );
+});
+
+bot.command('cancel', (ctx) => {
+  ctx.reply('Bye!');
+  ctx.scene.leave();
 });
 
 // bot.launch();
