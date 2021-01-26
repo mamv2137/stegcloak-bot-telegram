@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "micro-bot"
   },
   "keywords": [],
   "author": "",
