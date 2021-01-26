@@ -4,13 +4,15 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "dev": "nodemon bot.js"
+    "dev": "nodemon index.js",
+    "start": "micro-bot"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "micro-bot": "^2.5.3",
     "stegcloak": "^1.1.1",
     "telegraf": "^4.0.1"
   },

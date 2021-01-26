@@ -1,14 +1,12 @@
 const {
-  Telegraf,
   session,
   Markup,
   Scenes: { BaseScene, Stage },
 } = require('telegraf');
+const { Composer } = require('micro-bot');
 const StegCloak = require('stegcloak');
 
 const stegcloak = new StegCloak(true, false);
-
-const token = '1403279726:AAEO32gbza7pwFlBgOSzgSDxvUuwrVOMo3M';
 
 const ENCRIPT = 'encrypt';
 const DECRIPT = 'decrypt';
@@ -114,7 +112,7 @@ stage.command('cancel', (ctx) => {
   ctx.scene.leave();
 });
 
-const bot = new Telegraf(token);
+const bot = new Composer();
 bot.use(session());
 bot.use(stage.middleware());
 
@@ -142,4 +140,6 @@ bot.command('options', (ctx) => {
   );
 });
 
-bot.launch();
+// bot.launch();
+
+module.export = bot;
