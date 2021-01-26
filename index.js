@@ -2,8 +2,8 @@ const {
   session,
   Markup,
   Scenes: { BaseScene, Stage },
+  Telegraf,
 } = require('telegraf');
-const { Composer } = require('micro-bot');
 const StegCloak = require('stegcloak');
 
 const stegcloak = new StegCloak(true, false);
@@ -112,7 +112,7 @@ stage.command('cancel', (ctx) => {
   ctx.scene.leave();
 });
 
-const bot = new Composer();
+const bot = new Telegraf(process.env.BOT_TOKEN);
 bot.use(session());
 bot.use(stage.middleware());
 
@@ -140,6 +140,6 @@ bot.command('options', (ctx) => {
   );
 });
 
-// bot.launch();
+bot.launch();
 
-module.export = bot;
+// module.export = bot;
