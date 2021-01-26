@@ -1,9 +1,11 @@
 const {
+  Composer,
   session,
   Markup,
-  Scenes: { BaseScene, Stage },
-} = require('telegraf');
-const { Composer } = require('micro-bot');
+  Stage,
+  Scene,
+  session,
+} = require('micro-bot');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -22,7 +24,7 @@ const introPasswordScene = `Please enter the password to hide the message`;
 
 const exitKeyboard = Markup.keyboard([cancelButton]).oneTime();
 
-const encryptScene = new BaseScene('encryptScene');
+const encryptScene = new Scene('encryptScene');
 encryptScene.enter((ctx) => ctx.reply(enterSecret, exitKeyboard));
 encryptScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! encryptScene');
@@ -36,7 +38,7 @@ encryptScene.on('text', (ctx) => {
   }
 });
 
-const decryptScene = new BaseScene('decryptScene');
+const decryptScene = new Scene('decryptScene');
 decryptScene.enter((ctx) => ctx.reply(introCoverScene, exitKeyboard));
 decryptScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! decryptScene');
@@ -50,7 +52,7 @@ decryptScene.on('text', (ctx) => {
   }
 });
 
-const coverScene = new BaseScene('coverScene');
+const coverScene = new Scene('coverScene');
 coverScene.enter((ctx) => ctx.reply(introCoverScene, exitKeyboard));
 coverScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! coverScene');
@@ -71,7 +73,7 @@ coverScene.on('text', (ctx) => {
   }
 });
 
-const passwordScene = new BaseScene('passwordScene');
+const passwordScene = new Scene('passwordScene');
 passwordScene.enter((ctx) => ctx.reply(introPasswordScene, exitKeyboard));
 passwordScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! passwordScene');
