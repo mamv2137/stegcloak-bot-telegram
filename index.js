@@ -2,8 +2,8 @@ const {
   session,
   Markup,
   Scenes: { BaseScene, Stage },
-  Telegraf,
 } = require('telegraf');
+const { Composer } = require('micro-bot');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -115,7 +115,7 @@ stage.command('cancel', (ctx) => {
   ctx.scene.leave();
 });
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Composer();
 bot.use(session());
 bot.use(stage.middleware());
 
@@ -143,6 +143,6 @@ bot.command('options', (ctx) => {
   );
 });
 
-bot.launch();
+// bot.launch();
 
-// module.export = bot;
+module.export = bot;
