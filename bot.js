@@ -1,6 +1,6 @@
 const { Composer, session, Stage, Scene, Markup } = require('micro-bot');
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 const StegCloak = require('stegcloak');
 
