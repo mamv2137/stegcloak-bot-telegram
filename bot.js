@@ -1,9 +1,4 @@
-const {
-  Composer,
-  session,
-  Scenes: { BaseScene, Stage },
-  Markup,
-} = require('micro-bot');
+const { Composer, session, Stage, BaseScene, Markup } = require('micro-bot');
 const dotenv = require('dotenv');
 dotenv.config();
 
