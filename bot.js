@@ -1,4 +1,9 @@
-const { Composer, session, Markup, Stage, Scene } = require('micro-bot');
+const {
+  Composer,
+  session,
+  Scenes: { BaseScene, Stage },
+  Markup,
+} = require('micro-bot');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -17,7 +22,7 @@ const introPasswordScene = `Please enter the password to hide the message`;
 
 const exitKeyboard = Markup.keyboard([cancelButton]).oneTime();
 
-const encryptScene = new Scene('encryptScene');
+const encryptScene = new BaseScene('encryptScene');
 encryptScene.enter((ctx) => ctx.reply(enterSecret, exitKeyboard));
 encryptScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! encryptScene');
@@ -31,7 +36,7 @@ encryptScene.on('text', (ctx) => {
   }
 });
 
-const decryptScene = new Scene('decryptScene');
+const decryptScene = new BaseScene('decryptScene');
 decryptScene.enter((ctx) => ctx.reply(introCoverScene, exitKeyboard));
 decryptScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! decryptScene');
@@ -45,7 +50,7 @@ decryptScene.on('text', (ctx) => {
   }
 });
 
-const coverScene = new Scene('coverScene');
+const coverScene = new BaseScene('coverScene');
 coverScene.enter((ctx) => ctx.reply(introCoverScene, exitKeyboard));
 coverScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! coverScene');
@@ -66,7 +71,7 @@ coverScene.on('text', (ctx) => {
   }
 });
 
-const passwordScene = new Scene('passwordScene');
+const passwordScene = new BaseScene('passwordScene');
 passwordScene.enter((ctx) => ctx.reply(introPasswordScene, exitKeyboard));
 passwordScene.hears(cancelButton, (ctx) => {
   ctx.reply('Bye! passwordScene');
@@ -98,9 +103,12 @@ passwordScene.on('text', async (ctx) => {
   }
 });
 
-const stage = new Stage();
-
-stage.register([encryptScene, decryptScene, coverScene, passwordScene]);
+const stage = new Stage([
+  encryptScene,
+  decryptScene,
+  coverScene,
+  passwordScene,
+]);
 
 stage.command('cancel', (ctx) => {
   ctx.reply('Bye!');
@@ -110,7 +118,7 @@ stage.command('cancel', (ctx) => {
 // const bot = new Telegraf(process.env.BOT_TOKEN);
 const bot = new Composer();
 bot.use(session());
-bot.use(stage);
+bot.use(stage.middleware());
 
 bot.start((ctx) => {
   const firstName = ctx.update.message.from.first_name;
